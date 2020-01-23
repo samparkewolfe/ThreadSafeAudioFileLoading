@@ -4,17 +4,24 @@
               jucerVersion="5.4.1">
   <MAINGROUP id="Jx4Fid" name="ThreadSafeAudioFileLoading">
     <GROUP id="{0A6B6194-6C22-2F64-3B10-969DBC125078}" name="Source">
-      <GROUP id="{C20B9990-45F3-4D0A-DACD-8BE2949199B5}" name="queue">
-        <FILE id="HeLUfu" name="atomicops.h" compile="0" resource="0" file="Source/queue/atomicops.h"/>
-        <FILE id="RlYLDJ" name="readerwriterqueue.h" compile="0" resource="0"
+      <GROUP id="{D480B2CB-4BC4-FFB5-DE9D-5D5CFB66ACD5}" name="queue">
+        <FILE id="XzJrGn" name="atomicops.h" compile="0" resource="0" file="Source/queue/atomicops.h"/>
+        <FILE id="TDyniK" name="readerwriterqueue.h" compile="0" resource="0"
               file="Source/queue/readerwriterqueue.h"/>
       </GROUP>
-      <FILE id="FX0KnF" name="FilePlayer.cpp" compile="1" resource="0" file="Source/FilePlayer.cpp"/>
-      <FILE id="hDQzzQ" name="FilePlayer.hpp" compile="0" resource="0" file="Source/FilePlayer.hpp"/>
-      <FILE id="ZKiz5p" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
-      <FILE id="IYKIuY" name="MainComponent.cpp" compile="1" resource="0"
+      <FILE id="qokrs7" name="BackgroundAudioFileLoader.cpp" compile="1"
+            resource="0" file="Source/BackgroundAudioFileLoader.cpp"/>
+      <FILE id="iiiCv6" name="BackgroundAudioFileLoader.hpp" compile="0"
+            resource="0" file="Source/BackgroundAudioFileLoader.hpp"/>
+      <FILE id="sN08Mm" name="Buffer.hpp" compile="0" resource="0" file="Source/Buffer.hpp"/>
+      <FILE id="WMIYh8" name="FilePlayer.cpp" compile="1" resource="0" file="Source/FilePlayer.cpp"/>
+      <FILE id="tG6Lnk" name="FilePlayer.hpp" compile="0" resource="0" file="Source/FilePlayer.hpp"/>
+      <FILE id="BneElq" name="Load.cpp" compile="1" resource="0" file="Source/Load.cpp"/>
+      <FILE id="Z0jEiQ" name="Load.hpp" compile="0" resource="0" file="Source/Load.hpp"/>
+      <FILE id="PwfMUz" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
+      <FILE id="cFkbX7" name="MainComponent.cpp" compile="1" resource="0"
             file="Source/MainComponent.cpp"/>
-      <FILE id="bsgoeE" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
+      <FILE id="qwxFWH" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
