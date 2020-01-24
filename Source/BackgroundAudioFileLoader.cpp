@@ -3,25 +3,49 @@
 
 using namespace std;
 
-BackgroundAudioFileLoader::BackgroundAudioFileLoader()
+BackgroundAudioFileLoader::BackgroundAudioFileLoader() :
+Thread("Thread"),
+m_stopThread(false)
 {
-    startTimerHz(1); // low priority checking.
+    startThread(0); // lowest priority
+}
+
+BackgroundAudioFileLoader::~BackgroundAudioFileLoader()
+{
+    m_stopThread = true;
+    sleep(1 * 1000); // 1 second
 }
 
 void BackgroundAudioFileLoader::loadFile(const string& fileAddress)
 {
-    if (!m_fileQueue.try_enqueue(fileAddress))
+    m_incoming.enqueue(fileAddress);
+}
+
+void BackgroundAudioFileLoader::run()
+{
+    while (!m_stopThread.load())
     {
-        // do something if fails.
+        string fileAddress;
+        if (m_incoming.try_dequeue(fileAddress))
+        {
+            auto buffer = make_shared<Buffer>();
+            Load::audio(fileAddress, buffer);
+            m_outgoing.enqueue(buffer);
+        }
+        sleep(33); // might be a little fast.
     }
 }
-void BackgroundAudioFileLoader::timerCallback()
+
+bool BackgroundAudioFileLoader::isFileReady()
 {
-    string fileAddress;
-    if(m_fileQueue.try_dequeue(fileAddress))
+    if (m_outgoing.try_dequeue(m_newBuffer))
     {
-        auto buffer = make_shared<Buffer>();
-        Load::audio(fileAddress, buffer);
-        m_audioQueue.enqueue(buffer);
+        return true;
     }
+    return false;
+}
+
+shared_ptr<Buffer> BackgroundAudioFileLoader::getLoadedAudioFile()
+{
+    return m_newBuffer;
 }

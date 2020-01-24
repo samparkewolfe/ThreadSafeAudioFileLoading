@@ -9,31 +9,24 @@
 using namespace moodycamel;
 using namespace std;
 
-class BackgroundAudioFileLoader : public Timer
+class BackgroundAudioFileLoader : public Thread
 {
 public:
     BackgroundAudioFileLoader();
+    ~BackgroundAudioFileLoader();
     
-    void timerCallback() override;
+    void run() override;
     
-    bool isFileReady()
-    {
-        if (m_audioQueue.try_dequeue(m_newBuffer))
-        {
-            return true;
-        }
-        return false;
-    }
+    bool isFileReady();
     
-    shared_ptr<Buffer> getLoadedAudioFile()
-    {
-        return m_newBuffer;
-    }
+    shared_ptr<Buffer> getLoadedAudioFile();
     
-    void loadFile(const std::string& fileAddress);
+    void loadFile(const string& fileAddress);
     
 private:
-    BlockingReaderWriterQueue<std::string> m_fileQueue;
-    ReaderWriterQueue<shared_ptr<Buffer>> m_audioQueue;
+    BlockingReaderWriterQueue<string> m_incoming;
+    ReaderWriterQueue<shared_ptr<Buffer>> m_outgoing;
     shared_ptr<Buffer> m_newBuffer;
+    
+    atomic<bool> m_stopThread;
 };
